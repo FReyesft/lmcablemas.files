@@ -20,9 +20,16 @@ import { ButtonModule } from 'primeng/button'
 import { TokenValidatorService } from './services/tokenValidator.service';
 import { ToastModule } from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { PanelModule } from 'primeng/panel';
+
+//* Libraries 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 //* PrimeNg Services
 import { MessageService } from 'primeng/api';
+import { AppBreadcrumbService } from './services/breadcrumb.service';
 
 @NgModule({
     imports: [
@@ -37,13 +44,16 @@ import { MessageService } from 'primeng/api';
         ButtonModule,
         ToastModule,
         MenubarModule, 
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        BreadcrumbModule,
+        PanelModule,
+        NgxSpinnerModule
     ],
     declarations: [
         AppComponent,
         AppMainComponent,
         LoginComponent,
-        MenubarComponent
+        MenubarComponent,
     ],
     providers: [
         {
@@ -52,7 +62,7 @@ import { MessageService } from 'primeng/api';
             multi: true
         },
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        MessageService
+        MessageService, AppBreadcrumbService
 
     ],
     bootstrap: [AppComponent]
