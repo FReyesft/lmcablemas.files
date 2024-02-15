@@ -20,7 +20,7 @@ import { ButtonModule } from 'primeng/button'
 import { TokenValidatorService } from './services/tokenValidator.service';
 import { ToastModule } from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 //* PrimeNg Services
 import { MessageService } from 'primeng/api';
 
@@ -36,7 +36,8 @@ import { MessageService } from 'primeng/api';
         InputTextModule,
         ButtonModule,
         ToastModule,
-        MenubarModule
+        MenubarModule, 
+        ProgressSpinnerModule
     ],
     declarations: [
         AppComponent,

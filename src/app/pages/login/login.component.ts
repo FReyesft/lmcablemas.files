@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         if (!response.error.isError) {
           localStorage.setItem('token', response.token.accessToken); // Store token in local storage
           localStorage.setItem('idCompany', ID_COMPANY); // Store company ID in local storage
-          this.router.navigate(['/dashboard']); // Redirect to dashboard page after successful authentication
+          this.router.navigate(['/home/dashboard']); // Redirect to dashboard page after successful authentication
         } else {
           // Display error message if authentication fails
           this.messageService.add({ severity: 'error', summary: response.error.message });
