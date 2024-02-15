@@ -1,15 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 // Application Components
 import { AppComponent } from './app.component';
 
 import { AppMainComponent } from './app.main.component';
+import { LoginComponent } from './pages/login/login.component';
+import { MenubarComponent } from './shared/menubar/menubar.component';
+
+//* PrimeNG Modules
+import { InputTextModule } from 'primeng/inputtext'
+import { ButtonModule } from 'primeng/button'
+import { TokenValidatorService } from './services/tokenValidator.service';
+import { ToastModule } from 'primeng/toast';
+import { MenubarModule } from 'primeng/menubar';
+
+//* PrimeNg Services
+import { MessageService } from 'primeng/api';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -17,14 +31,28 @@ import { AppMainComponent } from './app.main.component';
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        ButtonModule,
+        ToastModule,
+        MenubarModule
     ],
     declarations: [
         AppComponent,
-        AppMainComponent
+        AppMainComponent,
+        LoginComponent,
+        MenubarComponent
     ],
     providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenValidatorService,
+            multi: true
+        },
         { provide: LocationStrategy, useClass: HashLocationStrategy },
+        MessageService
+
     ],
     bootstrap: [AppComponent]
 })

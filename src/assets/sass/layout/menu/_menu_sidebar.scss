@@ -1,4 +1,4 @@
-@media (min-width: $tabletBreakpoint + 1) {
+@media (min-width: $tabletBreakpoint) {
     .layout-wrapper {
         &.layout-sidebar {
             &.layout-sidebar-static {
@@ -225,7 +225,7 @@
             }
 
             .layout-main {
-                margin-left: 92px;
+                margin-left: 0px;
             }
         }
     }
