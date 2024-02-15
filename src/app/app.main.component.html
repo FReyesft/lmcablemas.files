@@ -11,6 +11,7 @@
                  'p-ripple-disabled': !app.ripple}">
 
     <div style="padding-top: 16px; padding-left: 24px; padding-right: 24px;">
+        <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-grid-beat" [fullScreen] = "true"><p style="color: white" > Cargando... </p></ngx-spinner>
         <app-menubar></app-menubar>
         <div class="layout-main-content" style="padding-top: 16px;">
             <router-outlet></router-outlet>
