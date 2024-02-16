@@ -41,6 +41,9 @@ export class ListFilesComponent implements OnInit {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: response.error.message });
         this.isLoading = false;
       }
+    }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al obtener los archivos' });
+      this.isLoading = false;
     });
   }
 
