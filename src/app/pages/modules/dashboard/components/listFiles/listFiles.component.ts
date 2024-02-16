@@ -48,7 +48,6 @@ export class ListFilesComponent implements OnInit {
   }
 
   paginate(event) {
-    console.log(event)
     let paginatorFile: PaginatorFile = {
       page: event.page + 1,
       size: event.rows
