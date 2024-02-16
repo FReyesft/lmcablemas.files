@@ -10,6 +10,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ListFilesComponent } from './components/listFiles/listFiles.component';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { FileDetailComponent } from './components/fileDetail/fileDetail.component';
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,11 +23,13 @@ import { InputTextModule } from 'primeng/inputtext';
     ReactiveFormsModule,
     FormsModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    PaginatorModule
   ],
   declarations: [
     DashboardComponent,
-    ListFilesComponent
+    ListFilesComponent,
+    FileDetailComponent
   ]
 })
 export class HomeModule { }

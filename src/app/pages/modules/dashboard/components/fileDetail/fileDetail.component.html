@@ -1,0 +1,74 @@
+<p-table #dt1 [value]="fileInvoiceDetails" dataKey="id" [loading]="isLoading"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+  [globalFilterFields]="['name', 'document', 'block', 'apto']" styleClass="p-datatable-gridlines">
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <h3>Detalles del archivo</h3>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <button pButton label="Exportar" icon="pi pi-file-excel" (click)="exportFile(dt1)"
+          class="p-button-info"></button>
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="min-width:7rem">
+        <div class="flex align-items-center">
+          Consecutivo
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Número de documento
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Nombre
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Dirección
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Estado del pago
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Total
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-details>
+    <tr>
+      <td>
+        {{ details.prefix }}-{{ details.consecutive }}
+      </td>
+      <td>
+        {{ details.nuip }}
+      </td>
+      <td>
+        {{ details.name | titlecase }}
+      </td>
+      <td>
+        {{ details.address | lowercase }}
+      <td>
+        {{ details.isPay ? 'Pagado' : 'No pagado' }}
+      </td>
+      <td>
+        {{ details.totalInvoice | currency:'COP':'symbol':'1.0-0'}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="7">No se encontraron archivos.</td>
+    </tr>
+  </ng-template>
+</p-table>

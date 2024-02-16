@@ -1,74 +1,68 @@
-<div class="card">
-  <p-table #dt1 [value]="" dataKey="id" [rows]="" [showCurrentPageReport]="true"
-    [loading]="" [paginator]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
-    [globalFilterFields]="['name', 'document', 'block', 'apto']" styleClass="p-datatable-gridlines">
-    <ng-template pTemplate="caption">
-      <div class="flex">
-        <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
-        <span class="p-input-icon-left ml-auto">
-          <i class="pi pi-search"></i>
-          <input pInputText type="text" (keyup.enter)="filterGlobal($event)" placeholder="Palabra clave" />
-        </span>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th style="min-width:5rem">
-          <div class="flex align-items-center">
-            Detalle
-          </div>
-        </th>
-        <th style="min-width:25rem">
-          <div class="flex align-items-center"> 
-            Nombre de archivo
-          </div>
-        </th>
-        <th style="min-width:10rem">
-          <div class="flex align-items-center">
-            Cantidad de registros
-          </div>
-        </th>
-        <th style="min-width:10rem"> 
-          <div class="flex align-items-center">
-            Cantidad de pagos
-          </div>
-        </th>
-        <th style="min-width:10rem">
-          <div class="flex align-items-center">
-            Cantidad Error
-          </div>
-        </th>
-        <th style="min-width:10rem">
-          <div class="flex align-items-center">
-            Cantidad Pendientes
-          </div>
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-data>
-      <tr *ngFor="let personDetail of data.persons">
-        <td style="min-width:20px;text-align:center">
-          <button (click)="goToDetails(data)" pButton type="button" icon="pi pi-folder-open" class="p-button-primary"
-            pTooltip="Ver detalles" tooltipPosition="bottom"></button>
-        </td>
-        <td>
-          {{ ' ' }}
-        </td>
-        <td>
-          {{ ' ' }}
-        </td>
-        <td>
-          {{ ' ' }}
-        </td>
-        <td>
-          {{ ' ' }}
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="7">No se encontraron archivos.</td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
+<p-table #dt1 [value]="fileInvoices" dataKey="id" [loading]="isLoading" styleClass="p-datatable-gridlines">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="min-width:5rem">
+        <div class="flex align-items-center">
+          Detalle
+        </div>
+      </th>
+      <th style="min-width:25rem">
+        <div class="flex align-items-center">
+          Nombre de archivo
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Zone
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Cantidad de registros
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Cantidad de pagos
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Cantidad Pendientes
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-file>
+    <tr>
+      <td style="min-width:20px;text-align:center">
+        <button (click)="goToDetail(file.idFileInvoice)" pButton type="button" icon="pi pi-folder-open"
+          class="p-button-primary" pTooltip="Ver detalles" tooltipPosition="bottom"></button>
+      </td>
+      <td>
+        {{ file.fileName }}
+      </td>
+      <td>
+        {{ file.zoneName }}
+      </td>
+      <td>
+        {{ file.quantityFileInvoice }}
+      </td>
+      <td>
+        {{ file.quantityFileInvoicePay }}
+      </td>
+      <td>
+        {{ file.quantityFileInvoiceUnpaid }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="7">No se encontraron archivos.</td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-paginator #pp *ngIf="paginator != undefined && paginator.totalItems != 0" [rows]="paginator? paginator.pageSize : 1"
+  [totalRecords]="paginator ? paginator.totalItems : 1" [rowsPerPageOptions]="[10,25]" (onPageChange)="paginate($event)"
+  [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} de {totalRecords}">
+</p-paginator>
